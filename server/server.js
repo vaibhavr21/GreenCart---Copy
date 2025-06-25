@@ -31,13 +31,16 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({origin: allowedOrigins, credentials: true}))
 
-app.get("/",(req, res)=> res.send("Api is working"));
+// API routes
 app.use("/api/user",userRouter)
 app.use("/api/seller",sellerRouter)
 app.use("/api/product",productRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/address",addressRouter)
 app.use("/api/order",orderRouter)
+
+// Health check route for API
+app.get("/api/health",(req, res)=> res.send("Api is working"));
 
 // Serve static files
 app.use(express.static(path.join(_dirname, "/client/dist")));
