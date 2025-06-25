@@ -36,7 +36,10 @@ app.use("/api/cart",cartRouter)
 app.use("/api/address",addressRouter)
 app.use("/api/order",orderRouter)
 
+// Serve static files
 app.use(express.static(path.join(_dirname, "/client/dist")));
+
+// Handle React Router - catch all handler: send back React's index.html file
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
 });
