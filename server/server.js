@@ -28,11 +28,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({origin: allowedOrigins, credentials: true}))
 
-app.use(express.static(path.join(_dirname, "/client/dist")));
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
-});
-
 app.get("/",(req, res)=> res.send("Api is working"));
 app.use("/api/user",userRouter)
 app.use("/api/seller",sellerRouter)
@@ -40,6 +35,11 @@ app.use("/api/product",productRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/address",addressRouter)
 app.use("/api/order",orderRouter)
+
+app.use(express.static(path.join(_dirname, "/client/dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
+});
 
 await connectDB();
 await connectCloudinary();
