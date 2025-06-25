@@ -1,14 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import App from "../App";
-import 'dotenv/config'
 import { useNavigate } from "react-router-dom";
-import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
 import axios from 'axios';
 
 
 axios.defaults.withCredentials = true; // Allow cookies to be sent with requests
-axios.defaults.baseURL = process.env.VITE_BACKEND_URL;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
 export const AppContext = createContext();
